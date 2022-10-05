@@ -79,6 +79,7 @@ public class WartHogScript : MonoBehaviour
     void Start()
     {
         if (gameObject.name == "CanvasTaming") { return; }
+        
         //Setting agent to this objects agent 
         agent = GetComponent<NavMeshAgent>();
 
@@ -107,10 +108,7 @@ public class WartHogScript : MonoBehaviour
     {
         // do not perform update mechanics on warthogs canvas. It is a child and only has this script for onMouseOver and other UI interactions 
         if (gameObject.name == "CanvasTaming" || gameObject.name == "CanvasTamed") { return; }
-        Debug.Log("This warthog is/is not: " + tamed);
-
-        Debug.Log("Taming percent" + amntTamed);
-
+        
         // if fed enough to be tamed set tame to true
         if (amntTamed == 100) { tamed = true; }
         _ = Vector3.Distance(transform.position, RandomVector3SpherePosition());

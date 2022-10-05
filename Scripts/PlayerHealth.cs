@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
 
     //Starting Health
-    private float startingHealth;
+    private float startingHealth = 100;
 
     // Current Health
     public static float currentHealth;
@@ -24,13 +24,22 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startingHealth;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    
+    void Update()
     {
-        
-        if (collision.collider.tag == "Leopard")
+        if (currentHealth <= 0)
         {
-            Debug.Log("PlayerHitByLeopard");
-            rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+            Destroy(gameObject);
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+        
+    //    if (collision.collider.tag == "Leopard")
+    //    {
+    //        Debug.Log("PlayerHitByLeopard");
+    //        rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+    //    }
+    //}
 }

@@ -6,6 +6,14 @@ public class Movement : MonoBehaviour
 
     private Animator anim;
 
+    // material for skybox
+    public Material skyBox1;
+
+    public Material skyBox2;
+
+    // directional light
+    public Light dirLight;
+
     private Rigidbody rb;
 
     private float rotateHorizontal;
@@ -18,7 +26,6 @@ public class Movement : MonoBehaviour
 
     public GameObject sword;
 
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,6 +35,24 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+
+        // if position on z axis is greater than 1000
+        if (transform.position.z > 1000)
+        {
+            // change the skybox 
+            RenderSettings.skybox = skyBox2;
+            // turn off the directional light
+            dirLight.enabled = false;
+
+        }
+        // else if the position is outside of the above range
+        else if (transform.position.z < 1000)
+        {
+            // change the skybox back to the original
+            RenderSettings.skybox = skyBox1;
+            // turn on the directional light
+            dirLight.enabled = true;
+        }
         rotateHorizontal = Input.GetAxis("Horizontal");
 
         moveVertical = Input.GetAxis("Vertical");
